@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Text Editor</title>
+    <script src="https://code.jquery.com/jquery-3.0.0.min.js" integrity="sha256-JmvOoLtYsmqlsWxa7mDSLMwa6dZ9rrIdtrrVYRnDRH0=" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <textarea id="editor" style="width: 100%; height: 100%"></textarea>
+    <script>
+        $(document).ready(() => {
+            const socket = io.connect();
+            let id;
+            let defaultData;
+
+            function sendContent(content) {
+                const message = {
+                    clientId: id,
+                    content: content
+                };
+                console.log('Sending change: ' + content);
+                socket.emit('change', message);
+            }
+
+            $('#editor').on('input propertychange', () => {
+                sendContent($('#editor').val());
+            });
+
+            socket.on('identity', (data) => {
+                id = data.id;
+                defaultData = data.defaultData;
+            });
+
+            socket.on('contents', (data) => {
+                console.log('New contents: ' + data);
+                $('#editor').val(data);
+            });
+
+            socket.on('connectionComplete', () => {
+                if ($('#editor').val().length === 0) {
+                    $('#editor').val(defaultData);
+                }
+            });
+
+            $(window).unload(() => {
+                socket.disconnect();
+            });
+
+        });
+    </script>
+</body>
+</html>

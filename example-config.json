@@ -1,0 +1,5 @@
+{
+	"initialText": "Lorem ipsum and all that jazz",
+	"appId": "3fe25a1c-0066-4885-88fe-9309000abcd8",
+	"url": "mqtt://broker.hivemq.com"
+}

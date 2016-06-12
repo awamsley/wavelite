@@ -1,0 +1,24 @@
+{
+  "name": "wavelite",
+  "version": "0.1.0",
+  "description": "Distributed collaborative text editor",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "express": "^4.13.4",
+    "mqtt": "^1.11.0",
+    "socket.io": "^1.4.6"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.5.3",
+    "sinon": "^1.17.4"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Anthony Wamsley",
+  "license": "GPL-3.0"
+}
