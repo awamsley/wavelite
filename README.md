@@ -2,6 +2,13 @@
 
 Wavelite is a distributed text editor that uses mqtt for message transport. The editor is available at host/editor. All servers that share the same appId as defined in the config file will share the same messages.
 
+## Installation
+```sh
+git clone https://github.com/awamsley/wavelite.git
+cd wavelite
+npm install
+```
+
 ## How to run
 
 Wavelite can be run using the command
